@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Créer une Campagne</h1>
+    <form method="POST" class="bg-white rounded-lg shadow p-8 space-y-4">
+        <input type="text" name="title" placeholder="Titre" required class="w-full px-4 py-2 border rounded">
+        <textarea name="description" placeholder="Description" class="w-full px-4 py-2 border rounded"></textarea>
+        <select name="brand_id" required class="w-full px-4 py-2 border rounded">
+            {% for b in brands %}<option value="{{ b.id }}">{{ b.name }}</option>{% endfor %}
+        </select>
+        <select name="podcast_id" required class="w-full px-4 py-2 border rounded">
+            {% for p in podcasts %}<option value="{{ p.id }}">{{ p.title }}</option>{% endfor %}
+        </select>
+        <select name="ad_type" required class="w-full px-4 py-2 border rounded">
+            <option value="host-read">Host-Read</option>
+            <option value="pre-roll">Pre-Roll</option>
+            <option value="mid-roll">Mid-Roll</option>
+        </select>
+        <input type="number" name="proposed_rate" placeholder="Budget (€)" required class="w-full px-4 py-2 border rounded">
+        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded">Créer</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Campagnes - PodcastMarket{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Mes Campagnes</h1>
+{% if campaigns %}
+<div class="bg-white rounded-lg shadow">
+    {% for c in campaigns %}
+    <div class="p-4 border-b"><a href="{{ url_for('campaigns.view_campaign', campaign_id=c.id) }}" class="text-indigo-600">{{ c.title }}</a> - {{ c.status }}</div>
+    {% endfor %}
+</div>
+{% else %}<p>Aucune campagne</p>{% endif %}
+{% endblock %}

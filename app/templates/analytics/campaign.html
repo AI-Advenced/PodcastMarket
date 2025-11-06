@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Analytics - {{ campaign.title }}</h1>
+<div class="grid grid-cols-4 gap-6 mb-8">
+    <div class="bg-white rounded shadow p-6"><div class="text-3xl font-bold">{{ totals.impressions }}</div><div>Impressions</div></div>
+    <div class="bg-white rounded shadow p-6"><div class="text-3xl font-bold">{{ totals.clicks }}</div><div>Clics</div></div>
+    <div class="bg-white rounded shadow p-6"><div class="text-3xl font-bold">{{ totals.conversions }}</div><div>Conversions</div></div>
+    <div class="bg-white rounded shadow p-6"><div class="text-3xl font-bold">{{ metrics.roi }}%</div><div>ROI</div></div>
+</div>
+{% endblock %}

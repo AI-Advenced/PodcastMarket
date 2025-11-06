@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}{{ podcast.title }} - PodcastMarket{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+        <div class="h-64 bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+            <i class="fas fa-podcast text-white text-8xl"></i>
+        </div>
+        
+        <div class="p-8">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-3xl font-bold text-gray-900">{{ podcast.title }}</h1>
+                {% if podcast.is_verified %}
+                    <i class="fas fa-check-circle text-green-500 text-2xl" title="Vérifié"></i>
+                {% endif %}
+            </div>
+            
+            {% if podcast.category %}
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-sm px-3 py-1 rounded-full mb-4">
+                {{ podcast.category }}
+            </span>
+            {% endif %}
+            
+            <p class="text-gray-600 mb-6">{{ podcast.description or 'Aucune description disponible' }}</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <i class="fas fa-users text-indigo-600 text-2xl mb-2"></i>
+                    <div class="font-bold text-gray-900">{{ podcast.average_listeners }}</div>
+                    <div class="text-sm text-gray-500">Auditeurs</div>
+                </div>
+                
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <i class="fas fa-microphone text-purple-600 text-2xl mb-2"></i>
+                    <div class="font-bold text-gray-900">{{ podcast.total_episodes }}</div>
+                    <div class="text-sm text-gray-500">Épisodes</div>
+                </div>
+                
+                {% if podcast.min_rate %}
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <i class="fas fa-euro-sign text-green-600 text-2xl mb-2"></i>
+                    <div class="font-bold text-gray-900">{{ podcast.min_rate }}€</div>
+                    <div class="text-sm text-gray-500">Min / épisode</div>
+                </div>
+                {% endif %}
+                
+                {% if podcast.max_rate %}
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <i class="fas fa-euro-sign text-pink-600 text-2xl mb-2"></i>
+                    <div class="font-bold text-gray-900">{{ podcast.max_rate }}€</div>
+                    <div class="text-sm text-gray-500">Max / épisode</div>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if podcast.rss_feed or podcast.apple_podcasts_url or podcast.spotify_url or podcast.website_url %}
+            <div class="border-t pt-6 mb-6">
+                <h3 class="font-bold text-gray-900 mb-3">Liens</h3>
+                <div class="flex flex-wrap gap-3">
+                    {% if podcast.rss_feed %}
+                    <a href="{{ podcast.rss_feed }}" target="_blank" class="text-orange-600 hover:text-orange-700">
+                        <i class="fas fa-rss mr-1"></i>RSS Feed
+                    </a>
+                    {% endif %}
+                    {% if podcast.apple_podcasts_url %}
+                    <a href="{{ podcast.apple_podcasts_url }}" target="_blank" class="text-purple-600 hover:text-purple-700">
+                        <i class="fab fa-apple mr-1"></i>Apple Podcasts
+                    </a>
+                    {% endif %}
+                    {% if podcast.spotify_url %}
+                    <a href="{{ podcast.spotify_url }}" target="_blank" class="text-green-600 hover:text-green-700">
+                        <i class="fab fa-spotify mr-1"></i>Spotify
+                    </a>
+                    {% endif %}
+                    {% if podcast.website_url %}
+                    <a href="{{ podcast.website_url }}" target="_blank" class="text-blue-600 hover:text-blue-700">
+                        <i class="fas fa-globe mr-1"></i>Website
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if current_user.is_authenticated and current_user.user_type == 'brand' and podcast.is_accepting_ads %}
+            <div class="flex gap-4">
+                <a href="{{ url_for('campaigns.create_campaign') }}?podcast_id={{ podcast.id }}" 
+                   class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-center py-3 rounded-md font-medium">
+                    <i class="fas fa-bullhorn mr-2"></i>Créer une campagne
+                </a>
+            </div>
+            {% endif %}
+            
+            {% if current_user.is_authenticated and podcast.user_id == current_user.id %}
+            <div class="flex gap-4">
+                <a href="{{ url_for('podcasts.edit_podcast', podcast_id=podcast.id) }}" 
+                   class="flex-1 bg-gray-600 hover:bg-gray-700 text-white text-center py-3 rounded-md font-medium">
+                    <i class="fas fa-edit mr-2"></i>Éditer
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

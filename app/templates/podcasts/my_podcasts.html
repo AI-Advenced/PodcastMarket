@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Mes Podcasts - PodcastMarket{% endblock %}
+{% block content %}
+<div class="mb-8 flex justify-between items-center">
+    <h1 class="text-4xl font-bold text-gray-900">Mes Podcasts</h1>
+    <a href="{{ url_for('podcasts.create_podcast') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md">
+        <i class="fas fa-plus mr-2"></i>Nouveau Podcast
+    </a>
+</div>
+{% if podcasts %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for podcast in podcasts %}
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-2">{{ podcast.title }}</h3>
+        <p class="text-gray-600 text-sm mb-4">{{ podcast.average_listeners }} auditeurs</p>
+        <div class="flex gap-2">
+            <a href="{{ url_for('podcasts.view_podcast', podcast_id=podcast.id) }}" class="text-indigo-600">Voir</a>
+            <a href="{{ url_for('podcasts.edit_podcast', podcast_id=podcast.id) }}" class="text-gray-600">Éditer</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-12">
+    <p class="text-gray-500">Vous n'avez pas encore de podcast.</p>
+</div>
+{% endif %}
+{% endblock %}

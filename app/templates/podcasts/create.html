@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Créer un Podcast - PodcastMarket{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">
+        <i class="fas fa-podcast text-indigo-600 mr-3"></i>
+        Créer un Podcast
+    </h1>
+    
+    <form method="POST" action="{{ url_for('podcasts.create_podcast') }}" class="bg-white rounded-lg shadow-md p-8">
+        <div class="space-y-6">
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Titre *</label>
+                <input type="text" id="title" name="title" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="Mon Super Podcast">
+            </div>
+            
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea id="description" name="description" rows="4"
+                          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                          placeholder="Description de votre podcast..."></textarea>
+            </div>
+            
+            <div>
+                <label for="category" class="block text-sm font-medium text-gray-700 mb-2">Catégorie</label>
+                <select id="category" name="category"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="">Sélectionner...</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Business">Business</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="News">News</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Comedy">Comedy</option>
+                </select>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="average_listeners" class="block text-sm font-medium text-gray-700 mb-2">Auditeurs moyens</label>
+                    <input type="number" id="average_listeners" name="average_listeners" min="0"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                           placeholder="5000">
+                </div>
+                
+                <div>
+                    <label for="total_episodes" class="block text-sm font-medium text-gray-700 mb-2">Nombre d'épisodes</label>
+                    <input type="number" id="total_episodes" name="total_episodes" min="0"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                           placeholder="50">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="min_rate" class="block text-sm font-medium text-gray-700 mb-2">Tarif minimum (€)</label>
+                    <input type="number" id="min_rate" name="min_rate" min="0" step="0.01"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                           placeholder="200">
+                </div>
+                
+                <div>
+                    <label for="max_rate" class="block text-sm font-medium text-gray-700 mb-2">Tarif maximum (€)</label>
+                    <input type="number" id="max_rate" name="max_rate" min="0" step="0.01"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                           placeholder="500">
+                </div>
+            </div>
+            
+            <div>
+                <label for="rss_feed" class="block text-sm font-medium text-gray-700 mb-2">RSS Feed</label>
+                <input type="url" id="rss_feed" name="rss_feed"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="https://...">
+            </div>
+            
+            <div>
+                <label for="apple_podcasts_url" class="block text-sm font-medium text-gray-700 mb-2">Apple Podcasts URL</label>
+                <input type="url" id="apple_podcasts_url" name="apple_podcasts_url"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="https://podcasts.apple.com/...">
+            </div>
+            
+            <div>
+                <label for="spotify_url" class="block text-sm font-medium text-gray-700 mb-2">Spotify URL</label>
+                <input type="url" id="spotify_url" name="spotify_url"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="https://open.spotify.com/...">
+            </div>
+            
+            <div>
+                <label for="website_url" class="block text-sm font-medium text-gray-700 mb-2">Site web</label>
+                <input type="url" id="website_url" name="website_url"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="https://monpodcast.fr">
+            </div>
+            
+            <div class="flex gap-4 pt-4">
+                <button type="submit"
+                        class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-md font-medium transition">
+                    <i class="fas fa-check mr-2"></i>Créer le podcast
+                </button>
+                <a href="{{ url_for('main.dashboard') }}"
+                   class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-md font-medium text-center transition">
+                    Annuler
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

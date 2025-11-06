@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Éditer la Marque</h1>
+    <form method="POST" class="bg-white rounded shadow p-8 space-y-4">
+        <input type="text" name="name" value="{{ brand.name }}" required class="w-full px-4 py-2 border rounded">
+        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded">Sauvegarder</button>
+    </form>
+</div>
+{% endblock %}

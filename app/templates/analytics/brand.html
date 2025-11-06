@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Analytics Marque</h1>
+<div class="bg-white rounded shadow p-8">
+    <p>Dépensé: {{ totals.total_spent }}€</p>
+    <p>ROI: {{ metrics.roi }}%</p>
+</div>
+{% endblock %}

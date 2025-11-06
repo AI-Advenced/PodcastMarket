@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Podcasts - PodcastMarket{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        <i class="fas fa-podcast text-indigo-600 mr-3"></i>
+        Tous les Podcasts
+    </h1>
+</div>
+
+{% if podcasts %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for podcast in podcasts %}
+    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+        <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+            <i class="fas fa-podcast text-white text-6xl"></i>
+        </div>
+        <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ podcast.title }}</h3>
+            <p class="text-gray-600 text-sm mb-4">{{ podcast.description[:100] if podcast.description else 'Aucune description' }}...</p>
+            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <div><i class="fas fa-users mr-1"></i>{{ podcast.average_listeners }}</div>
+                <div><i class="fas fa-microphone mr-1"></i>{{ podcast.total_episodes }} ep.</div>
+            </div>
+            <a href="{{ url_for('podcasts.view_podcast', podcast_id=podcast.id) }}" 
+               class="block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md">
+                Voir détails
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-12">
+    <i class="fas fa-inbox text-gray-400 text-6xl mb-4"></i>
+    <h3 class="text-xl font-semibold text-gray-700">Aucun podcast trouvé</h3>
+</div>
+{% endif %}
+{% endblock %}

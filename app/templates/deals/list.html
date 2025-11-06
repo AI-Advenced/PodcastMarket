@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Négociations</h1>
+{% for d in deals %}
+<div class="bg-white rounded shadow p-6 mb-4">
+    <p>Offre: {{ d.offered_rate }}€ - {{ d.response_status }}</p>
+</div>
+{% endfor %}
+{% endblock %}

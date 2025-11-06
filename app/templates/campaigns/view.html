@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white rounded-lg shadow p-8">
+    <h1 class="text-3xl font-bold mb-4">{{ campaign.title }}</h1>
+    <p class="mb-4">{{ campaign.description }}</p>
+    <div class="mb-4"><strong>Statut:</strong> {{ campaign.status }}</div>
+    <a href="{{ url_for('analytics.campaign_analytics', campaign_id=campaign.id) }}" class="bg-green-600 text-white px-6 py-3 rounded">Analytics</a>
+</div>
+{% endblock %}
