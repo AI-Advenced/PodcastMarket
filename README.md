@@ -2,9 +2,11 @@
 
 Marketplace de publicité podcast connectant les marques avec les podcasters pour du contenu sponsorisé et des publicités lues par l'hôte.
 
-## 🚀 URL de Production
+## 🚀 Production
 
-**Application en ligne** : https://3000-imbyy9gzpxu1h15byf03t-2b54fc91.sandbox.novita.ai
+<img width="1538" height="827" alt="image" src="https://github.com/user-attachments/assets/a94f1dbc-c706-46f9-84d4-0e01f46ea177" />
+
+
 
 ## 📋 Aperçu du Projet
 
@@ -254,11 +256,6 @@ pm2 list
 pm2 logs podcastmarket --nostream
 ```
 
-### Accès
-
-- **Local** : http://localhost:3000
-- **Production** : https://3000-imbyy9gzpxu1h15byf03t-2b54fc91.sandbox.novita.ai
-
 ## 👥 Comptes de Test
 
 ### Podcaster
@@ -366,5 +363,5 @@ Tous droits réservés © 2024 PodcastMarket
 ---
 
 **Status** : ✅ En ligne et opérationnel  
-**Dernière mise à jour** : 6 novembre 2024  
+**Dernière mise à jour** : 6 novembre 2025  
 **Version** : 1.0.0 (MVP)
